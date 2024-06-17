@@ -1,0 +1,5 @@
+## Note: As of prettier v3.0.0, prettier would ignore files specified in `.gitignore` thus no need to directly specify already ignored items it in this file.
+
+# Ignore artifacts:
+build
+coverage
