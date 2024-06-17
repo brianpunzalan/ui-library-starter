@@ -13,7 +13,8 @@
     "preview": "vite preview",
     "format:check": "yarn prettier . --check",
     "format:write": "yarn prettier . --write",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,html,xml}": [
