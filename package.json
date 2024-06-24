@@ -9,7 +9,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:eslint": "yarn eslint . --report-unused-disable-directives --max-warnings 0",
+    "lint:stylelint": "yarn stylelint \"**/*.css\"",
+    "lint:stylelint:fix": "yarn lint:stylelint --fix",
+    "lint": "yarn lint:eslint && yarn lint:stylelint",
     "preview": "vite preview",
     "format:check": "yarn prettier . --check",
     "format:write": "yarn prettier . --write",
@@ -19,6 +22,10 @@
     "build-storybook": "storybook build"
   },
   "lint-staged": {
+    "*.{css}": [
+      "yarn lint:stylelint:fix",
+      "git add ."
+    ],
     "*.{js,jsx,ts,tsx,html,xml}": [
       "yarn format:write",
       "git add ."
@@ -57,6 +64,8 @@
     "prettier": "^3.3.2",
     "prettier-plugin-organize-imports": "^3.2.4",
     "storybook": "^8.1.10",
+    "stylelint": "^16.6.1",
+    "stylelint-config-standard": "^36.0.1",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.13.0",
@@ -66,5 +75,6 @@
     "extends": [
       "plugin:storybook/recommended"
     ]
-  }
+  },
+  "packageManager": "yarn@4.3.1"
 }

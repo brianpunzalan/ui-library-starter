@@ -46,28 +46,31 @@ const jsdocEslint = [
   jsdoc.configs['flat/recommended-typescript-error'],
   {
     files: ['**/*.js', '**/*.ts', '**/*.tsx'],
-    plugins: {
-      jsdoc,
-    },
     rules: {
       'jsdoc/require-description': [
-        'error',
+        'warn',
         {
-          require: {
-            FunctionDeclaration: true,
-            MethodDefinition: true,
-            ClassDeclaration: true,
-            ArrowFunctionExpression: false,
-            FunctionExpression: false,
-          },
+          contexts: [
+            'FunctionDeclaration',
+            'MethodDefinition',
+            'ClassDeclaration',
+            'FunctionExpression',
+          ],
         },
       ],
     },
   },
 ]
 
-export default tseslint.config(
+const ignoredFiles = [
   includeIgnoreFile(gitignorePath),
+  {
+    ignores: ['*.config.js', '*.config.ts'],
+  },
+]
+
+export default tseslint.config(
+  ...ignoredFiles,
   js.configs.recommended,
   ...tseslint.configs.recommended,
   reactHooksEslint,
